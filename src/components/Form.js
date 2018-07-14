@@ -20,8 +20,8 @@ class Form extends React.Component {
         }
 
         onCountryChange = (event) => {
-            console.log(event.target.value);
             this.setState({countryValue: event.target.value});
+            console.log(event.target.value);
             this.setCity(event.target.value);
         }
 
@@ -33,7 +33,6 @@ class Form extends React.Component {
         event.preventDefault();
         const city = event.target.elements.cities.value;
         const country = event.target.elements.countryes.value;
-        console.log(country);
     
         const my_api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`);
         const data = await my_api_call.json();
@@ -76,6 +75,11 @@ class Form extends React.Component {
     }
 
     setCity = async (country) => {
+        console.log(country);
+        for (let coun in this.state.countryes) {
+            if (this.state.countryes[coun].countryName === country)
+                country = this.state.countryes[coun].countryCode;
+        }
         const api_cites= await fetch(`http://api.geonames.org/searchJSON?q=&country=${country}&lang=de&username=${userName} `)
         const data = await api_cites.json();
         let temp = [];    
@@ -97,7 +101,7 @@ class Form extends React.Component {
                     <select type="text" name="countryes" value={this.state.countryValue} onChange={this.onCountryChange}>
                         {this.state.countryes.map((value) => {
                             return (
-                                <option key={v4()} value={value.countryCode}>{value.countryName}</option>
+                                <option key={v4()} value={value.countryName}>{value.countryName}</option>
                             )
                         })}
                     </select>
