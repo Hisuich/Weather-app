@@ -2,7 +2,8 @@ import React  from 'react';
 import { connect } from 'react-redux';
 import {v4} from 'node-uuid';
 
-const WEATHER_API_KEY = '2ac075017f0ce2dec851a88821c340f8';
+const API_KEY = '2ac075017f0ce2dec851a88821c340f8';
+const userName = 'Hisuich';
 
 class Form extends React.Component {
         constructor(props) {
@@ -34,7 +35,7 @@ class Form extends React.Component {
         const country = event.target.elements.countryes.value;
         console.log(country);
     
-        const my_api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${WEATHER_API_KEY}`);
+        const my_api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`);
         const data = await my_api_call.json();
             console.log(data);
             if (city && country) {
@@ -65,21 +66,21 @@ class Form extends React.Component {
       }
 
     getCountryes = async () => {
-    const api_country = await fetch(`https://api.openaq.org/v1/countries?limit=1000`)
+    const api_country = await fetch(`http://api.geonames.org/countryInfoJSON?&username=${userName}`)
     const data = await api_country.json();
     let temp = [];    
-    for(let country in data.results) {
-                temp.push(data.results[country]);
+    for(let country in data.geonames) {
+                temp.push(data.geonames[country]);
         }
     this.setState({countryes: temp});
     }
 
     setCity = async (country) => {
-        const api_cites= await fetch(`https://api.openaq.org/v1/cities?limit=200&country=${country}`)
+        const api_cites= await fetch(`http://api.geonames.org/searchJSON?q=&country=${country}&lang=de&username=${userName} `)
         const data = await api_cites.json();
         let temp = [];    
-        for(let city in data.results) {
-                    temp.push(data.results[city].city);
+        for(let city in data.geonames) {
+                    temp.push(data.geonames[city].name);
             }
         console.log(temp);
         this.setState({cities: temp});
@@ -96,7 +97,7 @@ class Form extends React.Component {
                     <select type="text" name="countryes" value={this.state.countryValue} onChange={this.onCountryChange}>
                         {this.state.countryes.map((value) => {
                             return (
-                                <option key={v4()} value={value.code}>{value.name}</option>
+                                <option key={v4()} value={value.countryCode}>{value.countryName}</option>
                             )
                         })}
                     </select>
