@@ -5,6 +5,15 @@ import "./App.css";
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import weatherReducer from './reducer/weatherReducer.js';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(weatherReducer);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+     document.getElementById('root'));
 registerServiceWorker();

@@ -1,36 +1,46 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
 
-class Weather extends Component {
-    render() {
+class Weather extends React.Component {
+
+        render() {
+            const { weather } = this.props;
         return (
             <div className="weather__info">             
                 { 
-                    this.props.temperature && <p className="weather__key">Temperature: 
-                        <span className="weather__value">{this.props.temperature}</span></p>
+                    weather.temperature && <p className="weather__key">Temperature: 
+                        <span className="weather__value">{weather.temperature}</span></p>
                 }
 
                 { 
-                    this.props.city        && <p className="weather__key">Location:    
-                        <span className="weather__value">{this.props.city}</span></p>
+                    weather.city        && <p className="weather__key">Location:    
+                        <span className="weather__value">{weather.city}</span></p>
                 }
 
                 {
-                    this.props.humidity    && <p className="weather__key">Humidity:    
-                        <span className="weather__value">{this.props.humidity}</span></p>
+                    weather.humidity    && <p className="weather__key">Humidity:    
+                        <span className="weather__value">{weather.humidity}</span></p>
                 }
 
                 { 
-                    this.props.description && <p className="weather__key">Condition:   
-                        <span className="weather__value">{this.props.description}</span></p>
+                    weather.description && <p className="weather__key">Condition:   
+                        <span className="weather__value">{weather.description}</span></p>
                 }
                 
                 { 
-                    this.props.error       && <p className="weather__error">             
-                        {this.props.error}</p>
+                    weather.error       && <p className="weather__error">             
+                        {weather.error}</p>
                 }
+
             </div>
         );
     }
 }
 
-export default Weather;
+
+const mapWeatherToProps = (state) => {
+    return {
+        weather: state.weather
+    }
+}
+export default connect(mapWeatherToProps)(Weather);
