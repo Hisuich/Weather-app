@@ -1,7 +1,7 @@
 {
   "name": "weather-app",
   "version": "0.1.0",
-  "homepage": "https://hisuich.github.io/Weather-app/build",
+	"homepage": "./",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",

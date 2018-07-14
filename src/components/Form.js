@@ -66,7 +66,7 @@ class Form extends React.Component {
       }
 
     getCountryes = async () => {
-    const api_country = await fetch(`http://api.geonames.org/countryInfoJSON?&username=${userName}`)
+    const api_country = await fetch(`https://api.geonames.org/countryInfoJSON?&username=${userName}`)
     const data = await api_country.json();
     let temp = [];    
     for(let country in data.geonames) {
@@ -76,7 +76,7 @@ class Form extends React.Component {
     }
 
     setCity = async (country) => {
-        const api_cites= await fetch(`http://api.geonames.org/searchJSON?q=&country=${country}&lang=de&username=${userName} `)
+        const api_cites= await fetch(`https://api.geonames.org/searchJSON?q=&country=${country}&lang=de&username=${userName} `)
         const data = await api_cites.json();
         let temp = [];    
         for(let city in data.geonames) {
