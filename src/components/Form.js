@@ -82,7 +82,7 @@ class Form extends React.Component {
 
     setCity = async (country) => {
         console.log(country);
-        const api_cites= await fetch(`https://secure.geonames.org/searchJSON?q=&country=${country}&lang=de&username=${userName} `)
+        const api_cites= await fetch(`https://secure.geonames.org/searchJSON?q=&country=${country}&username=${userName} `)
         const data = await api_cites.json();
         let temp = [];    
         for(let city in data.geonames) {
