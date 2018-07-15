@@ -15,8 +15,7 @@ class Form extends React.Component {
                 cities: [],
             }
             this.getCountryes();
-            this.setCity('AD')
-
+            this.setCityByCoords();
         }
 
         onCountryChange = (event) => {
@@ -80,6 +79,35 @@ class Form extends React.Component {
     this.setState({countryes: temp});
     }
 
+    setCityByCoords = async () => {
+        navigator.geolocation.getCurrentPosition(pos => {
+            fetch(`json?key=AIzaSyCAr4oGVoe2A4PtksWMdU509Wzc8l-WDrM&language=en&location=${pos.coords.latitude}, ${pos.coords.longitude}&radius=5`)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                const city = data.results[0].name;
+                fetch(`https://secure.geonames.org/searchJSON?q=${city}&username=${userName}`)
+                .then(countryRes => {
+                    return countryRes.json();
+                })
+                .then(countryData => {
+                    const country = countryData.geonames[0].countryName;
+                    this.setState({
+                        cityValue: city,
+                        countryValue: country
+                    })
+                    for (let i = 0; i < this.state.countryes.length; i++) {
+                        if (this.state.countryes[i].name === country) {
+                            this.setCity(this.state.countryes[i].alpha2Code);
+                            i = this.state.countryes.length;
+                        }
+                    }
+                })
+            });
+        })
+    }
+
     setCity = async (country) => {
         console.log(country);
         const api_cites= await fetch(`https://secure.geonames.org/searchJSON?q=&country=${country}&username=${userName} `)
@@ -114,4 +142,9 @@ class Form extends React.Component {
     }
     
 
-export default connect()(Form);
+export default connect(state => {
+    return {
+        city: state.city,
+        country: state.country
+    }
+})(Form);

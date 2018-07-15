@@ -7,14 +7,6 @@ import Form from './components/Form.js';
 import Weather from './components/Weather.js';
 
 class App extends Component {
-  state = {
-    temperature: undefined,
-    city: undefined,
-    country: undefined,
-    humidity: undefined,
-    description: undefined,
-    error: undefined
-  }
 
   render() {
     return (
