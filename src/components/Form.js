@@ -107,6 +107,15 @@ class Form extends React.Component {
                             )
                         })}
                     </select>
+                    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Company
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Yes</a></li>
+        <li><a href="#">No</a></li>
+      </ul>
+    </div>
                     <button>Get Weather</button>
                 </form>            
         );
