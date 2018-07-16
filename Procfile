@@ -1,1 +1,1 @@
-web: node src/proxy.js
+web: node proxy.js
