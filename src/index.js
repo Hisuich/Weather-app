@@ -9,7 +9,7 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import weatherReducer from './reducer/weatherReducer.js';
 
-const store = createStore(weatherReducer);
+export const store = createStore(weatherReducer);
 
 ReactDOM.render(
     <Provider store={store}>

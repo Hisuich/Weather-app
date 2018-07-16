@@ -10,6 +10,7 @@ class GetWeather extends React.Component {
         event.preventDefault();
         const API_KEY = '2ac075017f0ce2dec851a88821c340f8';
         const city = this.props.city;
+        console.log(city);
         const country = this.props.country;
     
         const my_api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`);
