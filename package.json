@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "homepage": "./",
   "private": true,
+  "proxy": {
+    "https://maps.googleapis.com/maps/api/place/nearbysearch/*": {
+      "target": "https://maps.googleapis.com/maps/api/place/nearbysearch/*"
+    }
+  },
   "dependencies": {
     "bootstrap": "^3.3.7",
     "cors": "^2.8.4",
