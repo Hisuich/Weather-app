@@ -80,8 +80,15 @@ class Form extends React.Component {
     }
 
     setCityByCoords = async () => {
+        var myHeaders = new Headers();
+
+        var myInit = { method: 'GET',
+                headers: myHeaders,
+               mode: 'cors',
+               cache: 'default' };
+
         navigator.geolocation.getCurrentPosition(pos => {
-            fetch(`json?key=AIzaSyCAr4oGVoe2A4PtksWMdU509Wzc8l-WDrM&language=en&location=${pos.coords.latitude}, ${pos.coords.longitude}&radius=5`)
+            fetch(`json?key=AIzaSyCAr4oGVoe2A4PtksWMdU509Wzc8l-WDrM&language=en&location=${pos.coords.latitude}, ${pos.coords.longitude}&radius=5`, myInit)
             .then(response => {
                 return response.json();
             })
