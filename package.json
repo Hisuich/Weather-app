@@ -24,5 +24,6 @@
   },
   "devDependencies": {
     "gh-pages": "^1.2.0"
-  }
+  },
+  "proxy": "https://ancient-falls-66666.herokuapp.com/"
 }
