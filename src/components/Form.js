@@ -82,13 +82,13 @@ class Form extends React.Component {
     setCityByCoords = async () => {
         navigator.geolocation.getCurrentPosition(pos => {
             console.log(pos.coords);
-            fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCAr4oGVoe2A4PtksWMdU509Wzc8l-WDrM&language=en&location=${pos.coords.latitude}, ${pos.coords.longitude}&radius=5`)
+            fetch(`https://secure.geonames.org/findNearbyJSON?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}&lang=en&username=${userName}&radius=5`)
             .then(response => {
                 return response.json();
             })
             .then(data => {
                 console.log(data);
-                const city = data.results[0].name;
+                const city = data.geonames[0].name;
                 fetch(`https://secure.geonames.org/searchJSON?q=${city}&username=${userName}`)
                 .then(countryRes => {
                     return countryRes.json();
