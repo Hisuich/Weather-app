@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "homepage": "./",
   "private": true,
-  "proxy": "https://ancient-falls-66666.herokuapp.com/",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "cors": "^2.8.4",
