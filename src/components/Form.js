@@ -82,7 +82,7 @@ class Form extends React.Component {
     setCityByCoords = async () => {
         navigator.geolocation.getCurrentPosition(pos => {
             console.log(pos.coords);
-            fetch(`json?key=AIzaSyCAr4oGVoe2A4PtksWMdU509Wzc8l-WDrM&language=en&location=${pos.coords.latitude}, ${pos.coords.longitude}&radius=5`)
+            fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyCAr4oGVoe2A4PtksWMdU509Wzc8l-WDrM&language=en&location=${pos.coords.latitude}, ${pos.coords.longitude}&radius=5`)
             .then(response => {
                 return response.json();
             })
