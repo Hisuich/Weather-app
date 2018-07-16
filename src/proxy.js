@@ -6,7 +6,7 @@ function onRequest(client_req, client_res) {
   console.log('serve: ' + client_req.url);
 
   var options = {
-    hostname: 'ancient-falls-66666.herokuapp.com',
+    hostname: 'maps.googleapis.com',
     port: 80,
     path: client_req.url,
     method: 'GET'
